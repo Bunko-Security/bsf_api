@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  postgres:
+    container_name: db
+    image: postgres:15.2-alpine
+    environment:
+      POSTGRES_USER: bunko_db_admin
+      POSTGRES_PASSWORD: dambelbas
+      POSTGRES_DB: bunko_db
+      PGDATA: /var/lib/postgresql/data/pgbunkodata
+    volumes:
+      - bunkodb-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
+  
+  
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@test.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    restart: always
+
+volumes:
+  bunkodb-data:

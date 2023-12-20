@@ -1,0 +1,10 @@
+fastapi[all]
+SQLAlchemy
+asyncpg
+passlib[bcrypt]
+python-jose
+alembic
+python-multipart
+pillow
+aiofiles
+pycryptodome
