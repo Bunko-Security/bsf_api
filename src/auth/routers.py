@@ -3,8 +3,9 @@ import hashlib
 from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database import get_async_session
-from schemas import UserAuthInfo
+from src.database import get_async_session
+from src.schemas import UserAuthInfo
+from src.service import get_user_by_login
 
 from .utils import (
     get_all_tokens, 
@@ -14,9 +15,9 @@ from .utils import (
     RefreshSession
 )
 from .hash import verify_auth_key
-from service import get_user_by_login
 from .schemas import UserLogin, HashKey
 from .exceptions import  InvalidUserLogin, InvalidUserPassword
+from .config import SERVER_SECRET_KEY
 
 router = APIRouter(tags=['Authentication'], prefix='/auth')
 
@@ -27,7 +28,7 @@ async def get_hash_key(
     user = await get_user_by_login(login, db)
     if user is None:
         fake_key = base64.b64encode(
-            hashlib.sha256(login.encode()).digest()[:22]
+            hashlib.sha256((login + SERVER_SECRET_KEY).encode()).digest()[:22]
         ).decode()
         return HashKey(
             hash_key=fake_key

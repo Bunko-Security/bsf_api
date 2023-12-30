@@ -1,9 +1,8 @@
-from sqlalchemy import (Column, ForeignKey, Integer, String, LargeBinary, PrimaryKeyConstraint)
+from sqlalchemy import (Column, ForeignKey, String)
 from sqlalchemy.orm import relationship
 
-from database import Base
-import enum
-from sqlalchemy import Enum
+from src.database import Base
+
 
 class Coworkers(Base):
     __tablename__ = 'coworkers'

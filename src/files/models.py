@@ -3,7 +3,7 @@ from sqlalchemy import (Column, ForeignKey, Integer, String, Date, DateTime,
 
 from datetime import datetime
 
-from database import Base
+from src.database import Base
 
 
 class Files(Base):

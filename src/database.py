@@ -2,7 +2,7 @@ from typing import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 
-from config import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
+from src.config import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
 from sqlalchemy.orm import DeclarativeBase
 
 class Base(DeclarativeBase):

@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from service import get_user_by_login
+from src.service import get_user_by_login
 
 async def set_new_avatar(login: str, new_filename: str, db: AsyncSession):
     user = await get_user_by_login(login, db)

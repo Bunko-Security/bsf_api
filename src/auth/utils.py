@@ -1,20 +1,17 @@
 from enum import Enum
 from typing import Annotated, Dict
-from fastapi.responses import JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-
-
 from jose import jwt, JWTError
 from jose.exceptions import ExpiredSignatureError
 from datetime import datetime, timedelta
 from fastapi import Cookie, Depends, HTTPException, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from schemas import UserAuthInfo
+from src.schemas import UserAuthInfo
+from src.database import get_async_session
+from src.service import get_user_by_login
 
-from database import get_async_session
 from .config import SECRET_KEY, ACCESS_TOKEN_ALIVE, REFRESH_TOKEN_ALIVE
-from service import get_user_by_login
 from .schemas import Tokens
 
 class TokenType(Enum):

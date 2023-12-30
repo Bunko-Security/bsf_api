@@ -3,10 +3,10 @@ from fastapi import APIRouter, Body, Depends, File, Path, Response, UploadFile
 from fastapi.responses import JSONResponse, FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database import get_async_session
-from auth.utils import get_current_user
-from config import AVATARS_DIR
-from schemas import UserAuthInfo
+from src.database import get_async_session
+from src.auth.utils import get_current_user
+from src.config import AVATARS_DIR
+from src.schemas import UserAuthInfo
 
 from .schemas import *
 from .service import set_new_avatar, set_new_username, get_profile

@@ -2,6 +2,7 @@ fastapi[all]
 SQLAlchemy
 asyncpg
 passlib[bcrypt]
+bcrypt
 python-jose
 alembic
 python-multipart

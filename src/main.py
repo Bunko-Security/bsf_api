@@ -1,29 +1,25 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-import auth.routers
-import profile.routers
-import files.routers
-import coworkers.routers
-import users.routers
+from src.config import BACKEND_CORS_ORIGINS
+import src.auth.routers as auth
+import src.profile.routers as profile
+import src.files.routers as files
+import src.coworkers.routers as coworkers
+import src.users.routers as users
 
 
 app = FastAPI(title='BSF API')
-
-origins = ['http://localhost:3000', 'http://127.0.0.1:3000',
-           'https://localhost:3000', 'https://127.0.0.1:3000']
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=[str(origin) for origin in BACKEND_CORS_ORIGINS],
     allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*'],
 )
 
 
-app.include_router(auth.routers.router)
-app.include_router(profile.routers.router)
-app.include_router(files.routers.router)
-app.include_router(coworkers.routers.router)
-app.include_router(users.routers.router)
+app.include_router(auth.router)
+app.include_router(profile.router)
+app.include_router(files.router)
+app.include_router(coworkers.router)
+app.include_router(users.router)

@@ -4,19 +4,26 @@ from fastapi.responses import FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from pathlib import Path
 
-from database import get_async_session
-from auth.utils import get_current_user
-from schemas import UserAuthInfo
+from src.database import get_async_session
+from src.auth.utils import get_current_user
+from src.schemas import UserAuthInfo
+from src.config import FILES_DIR
 
-from .schemas import *
-from config import FILES_DIR
-from .service import *
-import files.private.routers
-import files.public.routers
+from .schemas import FileInfo, DecryptPrivateFileData, FileToMeInfo
+from .service import (
+    delete_all_files_by_user_login, 
+    get_all_user_files, 
+    get_fileinfo_by_file_id_and_user_login,
+    get_all_files_to_user,
+    delete_file_by_file_id_and_user_login,
+    get_data_to_decrypt_private_file
+)
+import src.files.private.routers as private
+import src.files.public.routers as public
 
 router = APIRouter(tags=['Files'], prefix='/files')
-router.include_router(files.private.routers.router)
-router.include_router(files.public.routers.router)
+router.include_router(private.router)
+router.include_router(public.router)
 
 @router.delete('/my')
 async def delete_all_my_files(

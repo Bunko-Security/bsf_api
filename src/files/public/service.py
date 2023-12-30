@@ -1,9 +1,7 @@
 from typing import List, Optional
 from sqlalchemy import and_, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.exc import IntegrityError
 
-from ..exceptions import NoDataForDecrypt
 from ..models import FileUsers, Files
 
 async def create_public_fileuser(
@@ -11,14 +9,11 @@ async def create_public_fileuser(
     file_id: int, 
     db: AsyncSession
 ) -> None:
-    try:
-        new_file_users = FileUsers(
-            file_id=file_id, user_to=None, secret_key=secret_key
-        )
-        db.add(new_file_users)
-        await db.commit()
-    except IntegrityError as e:
-        raise e
+    new_file_users = FileUsers(
+        file_id=file_id, user_to=None, secret_key=secret_key
+    )
+    db.add(new_file_users)
+    await db.commit()
     
 
 async def get_all_public_files(

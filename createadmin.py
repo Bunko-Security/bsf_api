@@ -1,21 +1,19 @@
 import getpass
 import base64
 import asyncio
-import hashlib
+
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 from Crypto.Hash import SHA256
 
-from database import async_session_maker
-from users.service import create_user
-from users.schemas import UserCreate
+from src.database import async_session_maker
+from src.users.service import create_user
+from src.users.schemas import UserCreate
 
 class PasswordMismatchMaxAttempts(Exception):
     pass
 
-# Проверить есть админы в БД
-# Проверить, что пользователь с данным логином уже создан
-# Переписать в функциональный вид
+
 async def main():
     login: str = input('Введите логин: ')
     password = getpass.getpass('Введите пароль: ')

@@ -1,10 +1,10 @@
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException
-from auth.utils import get_current_user
-from database import get_async_session
+from src.auth.utils import get_current_user
+from src.database import get_async_session
 from sqlalchemy.ext.asyncio import AsyncSession
-from schemas import UserAuthInfo
-from auth.utils import get_current_user_admin
+from src.schemas import UserAuthInfo
+from src.auth.utils import get_current_user_admin
 from .service import read_all_users, delete_user, create_user, read_users_by_logins
 from .schemas import UserInfo, UserCreate, UserPubkey
 from .exceptions import UserAlreadyExists

@@ -1,7 +1,7 @@
 from typing import List, Optional
 from sqlalchemy.ext.asyncio import AsyncSession
-from auth.hash import bcrypt_auth_key
-from models import Users
+from src.auth.hash import bcrypt_auth_key
+from src.models import Users
 from sqlalchemy import and_, delete, select
 
 from .exceptions import UserAlreadyExists

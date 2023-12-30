@@ -3,13 +3,14 @@ import hashlib
 from typing import List, Optional
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
-from auth.utils import get_current_user
-from database import get_async_session
+
+from src.auth.utils import get_current_user
+from src.database import get_async_session
+from src.schemas import UserAuthInfo
+
 from ..exceptions import FileSavingException
 from ..schemas import BaseFileData
 from ..service import create_file
-
-from schemas import UserAuthInfo
 
 from .schemas import PublicFileData, PublicFileInfo
 from .service import create_public_fileuser, get_all_public_files

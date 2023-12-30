@@ -1,15 +1,11 @@
 from typing import List, Optional
-from sqlalchemy.exc import IntegrityError
-from fastapi import BackgroundTasks, HTTPException, UploadFile
+from fastapi import UploadFile
 from sqlalchemy import and_, delete, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from service import get_user_by_login
 from .schemas import BaseFileData
-from schemas import UserAuthInfo
 from .models import Files, FileUsers
 from .utils import save_file_in_filesystem, delete_file_from_filesystem
-from models import Users
 from .exceptions import FileSavingException, NoDataForDecrypt, NoFileException
 
 

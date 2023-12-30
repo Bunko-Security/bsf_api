@@ -1,13 +1,11 @@
 from typing import List, Optional
-from fastapi import HTTPException
-from sqlalchemy import and_, delete, or_, select, union
+from sqlalchemy import and_, delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.exc import IntegrityError, NoResultFound
-from models import Users
-from .models import Coworkers
+from sqlalchemy.exc import IntegrityError
 
-from .schemas import CoworkerBase
-from pydantic import TypeAdapter
+from src.models import Users
+
+from .models import Coworkers
 from .exceptions import CoworkerAlreadyExists, InvalidCoworkerLogin
 
 

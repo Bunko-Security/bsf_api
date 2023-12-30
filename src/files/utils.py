@@ -1,8 +1,9 @@
-from fastapi import UploadFile
-from config import FILES_DIR
 import aiofiles
-from .exceptions import FileSavingException
+from fastapi import UploadFile
 from pathlib import Path
+
+from src.config import FILES_DIR
+from .exceptions import FileSavingException
 
 CHUNK_SIZE = 1024 * 1024
 

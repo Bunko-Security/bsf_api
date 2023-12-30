@@ -1,6 +1,6 @@
 from typing import Optional
 from sqlalchemy.ext.asyncio import AsyncSession
-from models import Users
+from src.models import Users
 
 
 async def get_user_by_login(

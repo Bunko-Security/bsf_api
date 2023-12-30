@@ -1,15 +1,15 @@
-from typing import Annotated, List, Optional
-from fastapi import APIRouter, Body, Depends, File, Response, UploadFile
-from fastapi.responses import JSONResponse, FileResponse
+from typing import List, Optional
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database import get_async_session
-from auth.utils import get_current_user
-from config import AVATARS_DIR
-from schemas import UserAuthInfo
+from src.database import get_async_session
+from src.auth.utils import get_current_user
+from src.schemas import UserAuthInfo
+
 from .schemas import CoworkerBase, CoworkerLogin
 from .service import *
 from .exceptions import CoworkerAlreadyExists, InvalidCoworkerLogin
+
 router = APIRouter(tags=['Coworkers'], prefix='/coworkers')
 
 @router.get('/favorite')
